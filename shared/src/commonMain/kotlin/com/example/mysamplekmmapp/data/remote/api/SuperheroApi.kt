@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.Flow
 interface SuperheroApi {
 
     @GET("all.json")
-    suspend fun getAllSuperheroList(): Flow<List<SuperheroListResponseItem?>>
+    suspend fun getAllSuperheroList(): List<SuperheroListResponseItem?>
 
 
 }

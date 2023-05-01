@@ -20,7 +20,7 @@ kotlin {
     android {
         compilations.all {
             kotlinOptions {
-                jvmTarget = "1.8"
+                jvmTarget = "11"
             }
         }
     }
@@ -45,12 +45,12 @@ kotlin {
                 implementation("de.jensklingenberg.ktorfit:ktorfit-lib:$ktorfitVersion")
                 //implementation("de.jensklingenberg.ktorfit:ktorfit-lib-light:$ktorfitVersion")
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
-                implementation("org.kodein.di:kodein-di:7.16.0")
-
-                            //Only needed when you want to use Kotlin Serialization
-                              implementation("io.ktor:ktor-client-serialization:$ktorVersion")
-                              implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
-                              implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
+                implementation("io.insert-koin:koin-core:3.3.3")
+                api("dev.icerock.moko:mvvm-core:0.13.1")
+                //Only needed when you want to use Kotlin Serialization
+                implementation("io.ktor:ktor-client-serialization:$ktorVersion")
+                implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
+                implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
             }
         }
         val commonTest by getting {
@@ -61,7 +61,11 @@ kotlin {
 
 
 
-        val androidMain by getting
+        val androidMain by getting{
+            dependencies {
+                implementation("io.insert-koin:koin-androidx-compose:3.4.2")
+            }
+        }
         val androidUnitTest by getting
         val iosX64Main by getting
         val iosArm64Main by getting
@@ -89,6 +93,11 @@ android {
     compileSdk = 33
     defaultConfig {
         minSdk = 25
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 }
 
