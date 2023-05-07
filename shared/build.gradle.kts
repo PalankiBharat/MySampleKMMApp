@@ -8,7 +8,7 @@ plugins {
 }
 
 version = "1.0"
-val ktorVersion = "2.2.4"
+val ktorVersion = "2.3.0"
 val ktorfitVersion = "1.1.0"
 
 configure<de.jensklingenberg.ktorfit.gradle.KtorfitGradleConfiguration> {
@@ -42,15 +42,15 @@ kotlin {
     sourceSets {
         val commonMain by getting{
             dependencies {
-                implementation("de.jensklingenberg.ktorfit:ktorfit-lib:$ktorfitVersion")
-                //implementation("de.jensklingenberg.ktorfit:ktorfit-lib-light:$ktorfitVersion")
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
                 implementation("io.insert-koin:koin-core:3.3.3")
-                api("dev.icerock.moko:mvvm-core:0.13.1")
                 //Only needed when you want to use Kotlin Serialization
+                implementation("io.ktor:ktor-client-core:$ktorVersion")
                 implementation("io.ktor:ktor-client-serialization:$ktorVersion")
+                implementation("io.ktor:ktor-client-logging:$ktorVersion")
                 implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
                 implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
+                implementation("io.github.aakira:napier:2.6.1")
             }
         }
         val commonTest by getting {
@@ -64,6 +64,7 @@ kotlin {
         val androidMain by getting{
             dependencies {
                 implementation("io.insert-koin:koin-androidx-compose:3.4.2")
+                implementation("io.ktor:ktor-client-okhttp:$ktorVersion")
             }
         }
         val androidUnitTest by getting
@@ -75,6 +76,9 @@ kotlin {
             iosX64Main.dependsOn(this)
             iosArm64Main.dependsOn(this)
             iosSimulatorArm64Main.dependsOn(this)
+            dependencies{
+                implementation("io.ktor:ktor-client-ios:$ktorVersion")
+            }
         }
         val iosX64Test by getting
         val iosArm64Test by getting

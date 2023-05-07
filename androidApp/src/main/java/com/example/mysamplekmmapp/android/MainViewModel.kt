@@ -17,7 +17,6 @@ class MainViewModel(
 
     fun getAllHeroes()
     {
-
         viewModelScope.launch {
             //uiStates.copy(loading = true)
             try {
