@@ -6,6 +6,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.mysamplekmmapp.data.model.SuperheroListResponseItem
 import com.example.mysamplekmmapp.data.remote.repository.AppRepository
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 
@@ -13,26 +16,27 @@ class MainViewModel(
     private val repository: AppRepository
 ) : ViewModel(){
 
-    var uiStates by mutableStateOf(MainUIStates())
+    private val _uiStates = MutableStateFlow(MainUIStates())
+    val uiStates = _uiStates.asStateFlow()
+
+    init {
+        getAllHeroes()
+    }
 
     fun getAllHeroes()
     {
         viewModelScope.launch {
-            //uiStates.copy(loading = true)
+            _uiStates.update { it.copy(loading = true) }
             try {
-                Log.d("TAG", "getAllHeroes: ")
                 val data = repository.getSuperheroList()
-                Log.d("TAG", "getAllHeroes lisy: "+data)
-              //  uiStates.copy(loading = false,list = data)
+                _uiStates.update { it.copy(loading = true, list = data) }
             }
             catch (e:Exception)
             {
-            //    uiStates.copy(loading = false, error = e.localizedMessage)
+             _uiStates.update { it.copy(loading = false, error = e.localizedMessage) }
             }
-
         }
     }
-
 }
 
 data class MainUIStates(

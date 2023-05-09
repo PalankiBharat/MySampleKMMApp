@@ -49,6 +49,7 @@ dependencies {
     implementation("io.insert-koin:koin-androidx-compose:3.4.2")
     implementation("androidx.fragment:fragment-ktx:1.5.7")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
+    implementation("io.coil-kt:coil-compose:2.3.0")
 
 
 }
