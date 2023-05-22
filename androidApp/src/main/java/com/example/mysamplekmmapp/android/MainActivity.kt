@@ -10,23 +10,21 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.mysamplekmmapp.Greeting
-import org.koin.android.ext.android.inject
+import com.example.mysamplekmmapp.android.superherolistScreen.SuperheroListScreen
 
 
 class MainActivity : ComponentActivity() {
 
-    private val viewModel: MainViewModel by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.getAllHeroes()
         setContent {
             MyApplicationTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    GreetingView(Greeting().greet())
+                   SuperheroListScreen()
                 }
             }
         }

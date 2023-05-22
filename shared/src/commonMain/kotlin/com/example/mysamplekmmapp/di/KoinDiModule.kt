@@ -8,10 +8,6 @@ import kotlinx.serialization.json.Json
 import org.koin.core.context.startKoin
 import org.koin.dsl.module
 
-
-
-
-
 val sharedModule = module {
     single { AppRepository(get()) }
     single { SuperheroApi() }

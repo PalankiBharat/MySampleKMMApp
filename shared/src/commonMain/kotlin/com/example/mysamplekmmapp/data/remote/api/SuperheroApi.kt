@@ -49,7 +49,6 @@ class SuperheroApi
             in 400..499 -> throw CustomException(CustomError.CLIENT_ERROR)
             else -> throw CustomException(CustomError.UNKNOWN_ERROR)
         }
-
         return try {
             result.body()
         } catch(e: Exception) {
