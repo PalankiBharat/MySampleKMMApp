@@ -4,6 +4,7 @@ import com.example.mysamplekmmapp.data.model.SuperheroListResponseItem
 import com.example.mysamplekmmapp.httpClient
 import com.example.mysamplekmmapp.initLogger
 import com.example.mysamplekmmapp.utils.ApiConstants.BASE_URL
+import com.example.mysamplekmmapp.utils.ApiConstants.BY_ID
 import io.github.aakira.napier.Napier
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
@@ -37,6 +38,30 @@ class SuperheroApi
         val result = try {
             httpClient.get {
                 url(BASE_URL)
+                contentType(ContentType.Application.Json)
+            }
+        }catch (e:Exception)
+        {
+            throw CustomException(CustomError.SERVICE_UNAVAILABLE)
+        }
+        when(result.status.value) {
+            in 200..299 -> Unit
+            500 -> throw CustomException(CustomError.SERVER_ERROR)
+            in 400..499 -> throw CustomException(CustomError.CLIENT_ERROR)
+            else -> throw CustomException(CustomError.UNKNOWN_ERROR)
+        }
+        return try {
+            result.body()
+        } catch(e: Exception) {
+            throw CustomException(CustomError.SERVER_ERROR)
+        }
+    }
+
+    suspend fun getSuperHeroById(id:Int):SuperheroListResponseItem?
+    {
+        val result = try {
+            httpClient.get {
+                url("$BASE_URL$BY_ID$id.json")
                 contentType(ContentType.Application.Json)
             }
         }catch (e:Exception)

@@ -4,17 +4,9 @@ plugins {
     id("com.android.library")
     id("com.google.devtools.ksp") version "1.8.20-1.0.10"
     id("kotlinx-serialization")
-    id("de.jensklingenberg.ktorfit") version "1.0.0"
 }
 
-version = "1.0"
 val ktorVersion = "2.3.0"
-val ktorfitVersion = "1.1.0"
-
-configure<de.jensklingenberg.ktorfit.gradle.KtorfitGradleConfiguration> {
-    version = ktorfitVersion
-}
-
 
 kotlin {
     android {
@@ -27,6 +19,20 @@ kotlin {
     iosX64()
     iosArm64()
     iosSimulatorArm64()
+
+
+    kotlin.targets.withType(org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget::class.java) {
+
+        // export correct artifact to use all classes of library directly from Swift
+
+        binaries.withType(org.jetbrains.kotlin.gradle.plugin.mpp.Framework::class.java).all {
+            export("dev.icerock.moko:mvvm-core:0.13.1")
+        }
+
+        binaries.all {
+            binaryOptions["memoryModel"] = "experimental"
+        }
+    }
 
     cocoapods {
         summary = "Some description for the Shared Module"
@@ -51,6 +57,9 @@ kotlin {
                 implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
                 implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
                 implementation("io.github.aakira:napier:2.6.1")
+                val mokoMvvmVersion = "0.13.1"
+                val mokoMVVMCore = "dev.icerock.moko:mvvm-core:$mokoMvvmVersion"
+                implementation(mokoMVVMCore)
             }
         }
         val commonTest by getting {
@@ -103,11 +112,4 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-}
-
-dependencies {
-    add("kspCommonMainMetadata", "de.jensklingenberg.ktorfit:ktorfit-ksp:$ktorfitVersion")
-    add("kspAndroid", "de.jensklingenberg.ktorfit:ktorfit-ksp:$ktorfitVersion")
-    add("kspIosX64", "de.jensklingenberg.ktorfit:ktorfit-ksp:$ktorfitVersion")
-    add("kspIosSimulatorArm64", "de.jensklingenberg.ktorfit:ktorfit-ksp:$ktorfitVersion")
 }

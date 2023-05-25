@@ -8,4 +8,10 @@ class AppRepository(val api: SuperheroApi) {
     suspend fun getSuperheroList(): List<SuperheroListResponseItem?> {
        return api.getSuperHeroList()
     }
+
+    suspend fun getSuperheroById(id:Int): SuperheroListResponseItem? {
+        return api.getSuperHeroById(id)
+    }
+
+
 }
