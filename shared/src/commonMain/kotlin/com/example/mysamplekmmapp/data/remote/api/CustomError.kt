@@ -10,3 +10,7 @@ enum class CustomError {
 class CustomException(serverError: CustomError) : Exception(
      "An error occurred when translating"
 )
+
+class NoInternetException : Exception(
+    "No Internet"
+)

@@ -23,7 +23,7 @@ class MainViewModel(
         getAllHeroes()
     }
 
-    fun getAllHeroes()
+    private fun getAllHeroes()
     {
         viewModelScope.launch {
             _uiStates.update { it.copy(loading = true) }
@@ -33,6 +33,7 @@ class MainViewModel(
             }
             catch (e:Exception)
             {
+                Log.d("TAG", "getAllHeroes: "+e.message)
              _uiStates.update { it.copy(loading = false, error = e.localizedMessage) }
             }
         }

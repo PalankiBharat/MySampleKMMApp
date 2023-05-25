@@ -26,3 +26,9 @@ actual fun httpClient(config: HttpClientConfig<*>.()->Unit) = HttpClient(Darwin)
 actual fun initLogger(){
     Napier.base(DebugAntilog())
 }
+
+actual class NetworkUtils {
+    actual fun isNetworkAvailable(): Boolean {
+        return true
+    }
+}

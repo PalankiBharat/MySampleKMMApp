@@ -1,5 +1,6 @@
 package com.example.mysamplekmmapp.data.remote.api
 
+import com.example.mysamplekmmapp.NetworkUtils
 import com.example.mysamplekmmapp.data.model.SuperheroListResponseItem
 import com.example.mysamplekmmapp.httpClient
 import com.example.mysamplekmmapp.initLogger
@@ -21,7 +22,7 @@ import io.ktor.serialization.kotlinx.json.json
 
 class SuperheroApi
 {
-    val httpClient = httpClient{
+    private val httpClient = httpClient{
         install(ContentNegotiation){
             json()
         }
@@ -35,9 +36,13 @@ class SuperheroApi
         }
     }
     suspend fun getSuperHeroList(): List<SuperheroListResponseItem?> {
+        if (!NetworkUtils().isNetworkAvailable())
+        {
+            throw NoInternetException()
+        }
         val result = try {
             httpClient.get {
-                url(BASE_URL)
+                url(BASE_URL+"all.json")
                 contentType(ContentType.Application.Json)
             }
         }catch (e:Exception)

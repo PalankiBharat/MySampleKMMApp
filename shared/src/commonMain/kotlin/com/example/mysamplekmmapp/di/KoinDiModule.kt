@@ -1,5 +1,6 @@
 package com.example.mysamplekmmapp.di
 
+import com.example.mysamplekmmapp.NetworkUtils
 import com.example.mysamplekmmapp.data.remote.api.SuperheroApi
 import com.example.mysamplekmmapp.data.remote.repository.AppRepository
 import io.ktor.client.HttpClient
