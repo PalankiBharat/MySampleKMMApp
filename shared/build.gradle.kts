@@ -4,10 +4,15 @@ plugins {
     id("com.android.library")
     id("com.google.devtools.ksp") version "1.8.20-1.0.10"
     id("kotlinx-serialization")
+    id("com.rickclephas.kmp.nativecoroutines") version "1.0.0-ALPHA-9"
+
 }
 
 val ktorVersion = "2.3.0"
 
+kotlin.sourceSets.all {
+    languageSettings.optIn("kotlin.experimental.ExperimentalObjCName")
+}
 kotlin {
     android {
         compilations.all {
@@ -20,19 +25,6 @@ kotlin {
     iosArm64()
     iosSimulatorArm64()
 
-
-    kotlin.targets.withType(org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget::class.java) {
-
-        // export correct artifact to use all classes of library directly from Swift
-
-        binaries.withType(org.jetbrains.kotlin.gradle.plugin.mpp.Framework::class.java).all {
-            export("dev.icerock.moko:mvvm-core:0.13.1")
-        }
-
-        binaries.all {
-            binaryOptions["memoryModel"] = "experimental"
-        }
-    }
 
     cocoapods {
         summary = "Some description for the Shared Module"
@@ -48,7 +40,7 @@ kotlin {
     sourceSets {
         val commonMain by getting{
             dependencies {
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1")
                 implementation("io.insert-koin:koin-core:3.3.3")
                 //Only needed when you want to use Kotlin Serialization
                 implementation("io.ktor:ktor-client-core:$ktorVersion")
@@ -57,9 +49,7 @@ kotlin {
                 implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
                 implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
                 implementation("io.github.aakira:napier:2.6.1")
-                val mokoMvvmVersion = "0.13.1"
-                val mokoMVVMCore = "dev.icerock.moko:mvvm-core:$mokoMvvmVersion"
-                implementation(mokoMVVMCore)
+                api("com.rickclephas.kmm:kmm-viewmodel-core:1.0.0-ALPHA-8")
             }
         }
         val commonTest by getting {
