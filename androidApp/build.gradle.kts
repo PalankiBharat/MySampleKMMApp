@@ -52,5 +52,9 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
     implementation("io.coil-kt:coil-compose:2.3.0")
 
+    val nav_version = "2.5.3"
+
+    implementation("androidx.navigation:navigation-compose:$nav_version")
+
 
 }

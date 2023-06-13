@@ -1,4 +1,4 @@
-package com.example.mysamplekmmapp.android.superherolistScreen
+package com.example.mysamplekmmapp.android.ui.superheroListing
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box

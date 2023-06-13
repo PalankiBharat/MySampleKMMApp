@@ -36,10 +36,10 @@ class SuperheroApi
         }
     }
     suspend fun getSuperHeroList(): List<SuperheroListResponseItem?> {
-        if (!NetworkUtils().isNetworkAvailable())
+       /* if (!NetworkUtils().isNetworkAvailable())
         {
             throw NoInternetException()
-        }
+        }*/
         val result = try {
             httpClient.get {
                 url(BASE_URL+"all.json")
