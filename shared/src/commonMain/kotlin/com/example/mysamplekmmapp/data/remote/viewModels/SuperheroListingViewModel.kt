@@ -20,6 +20,7 @@ class SuperheroListingViewModel(
     @NativeCoroutinesState
     val uiStates = _uiStates.asStateFlow()
 
+
     init {
         getAllHeroes()
     }

@@ -11,9 +11,14 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.example.mysamplekmmapp.android.ui.superheroDetails.SuperheroDetailsScreen
+import com.example.mysamplekmmapp.android.ui.superheroDetails.toSuperheroDataHolder
 import com.example.mysamplekmmapp.android.ui.superheroListing.SuperheroListScreen
 import com.example.mysamplekmmapp.android.utils.NavigationRoutes.SuperheroDetailsScreen
 import com.example.mysamplekmmapp.android.utils.NavigationRoutes.SuperheroListingScreen
+import com.example.mysamplekmmapp.android.utils.deserialize
+import com.example.mysamplekmmapp.android.utils.serialize
+import com.example.mysamplekmmapp.data.model.SuperheroListResponseItem
 
 
 class MainActivity : ComponentActivity() {
@@ -32,16 +37,21 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colors.background
                 ) {
 
-                   NavHost(navController = navController, startDestination = SuperheroListingScreen)
+                   NavHost(navController = navController, startDestination = "$SuperheroListingScreen/{data}")
                    {
-                       composable(SuperheroListingScreen){
+                       composable("$SuperheroListingScreen/{data}"){
                            SuperheroListScreen{
-                               navController.navigate(SuperheroDetailsScreen)
+                               navController.navigate("$SuperheroDetailsScreen/${it.serialize()}")
                            }
                        }
 
                        composable(SuperheroDetailsScreen){
+                           val superHero = it.arguments?.getString("data")?.deserialize<SuperheroListResponseItem>().toSuperheroDataHolder()
+                           SuperheroDetailsScreen(
+                               superhero = superHero
+                           ) {
 
+                           }
                        }
                    }
 

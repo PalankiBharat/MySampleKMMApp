@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     kotlin("android")
+    id("kotlin-parcelize")
 }
 
 android {
@@ -46,13 +47,18 @@ dependencies {
     implementation("androidx.compose.foundation:foundation:1.4.3")
     implementation("androidx.compose.material:material:1.4.3")
     implementation ("androidx.lifecycle:lifecycle-runtime-compose:2.6.1")
-    implementation("androidx.activity:activity-compose:1.7.1")
+    implementation("androidx.activity:activity-compose:1.7.2")
     implementation("io.insert-koin:koin-androidx-compose:3.4.2")
-    implementation("androidx.fragment:fragment-ktx:1.5.7")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
+    implementation("androidx.fragment:fragment-ktx:1.6.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
     implementation("io.coil-kt:coil-compose:2.3.0")
 
-    val nav_version = "2.5.3"
+    implementation("com.google.code.gson:gson:2.10.1")
+    implementation ("com.github.skydoves:cloudy:0.1.2")
+
+
+
+    val nav_version = "2.6.0"
 
     implementation("androidx.navigation:navigation-compose:$nav_version")
 

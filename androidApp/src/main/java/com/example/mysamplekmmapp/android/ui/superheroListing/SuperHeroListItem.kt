@@ -1,6 +1,7 @@
 package com.example.mysamplekmmapp.android.ui.superheroListing
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -18,11 +19,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
+import com.example.mysamplekmmapp.data.model.SuperheroListResponseItem
 
 @Composable
-fun SuperheroCard(imageUrl: String, title: String) {
+fun SuperheroCard(modifier: Modifier = Modifier , imageUrl: String, title: String) {
     Box(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .height(250.dp)
     ) {
