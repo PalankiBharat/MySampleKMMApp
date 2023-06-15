@@ -13,7 +13,7 @@ import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun SuperheroListScreen(
-    viewModel: SuperheroListingViewModel = koinViewModel(),
+    viewModel: SuperheroListingViewModel,
     onItemClick: (SuperheroListResponseItem?) -> Unit
 ) {
     Column {

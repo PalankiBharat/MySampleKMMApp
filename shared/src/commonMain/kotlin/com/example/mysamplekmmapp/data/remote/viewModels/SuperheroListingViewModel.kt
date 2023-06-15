@@ -25,6 +25,11 @@ class SuperheroListingViewModel(
         getAllHeroes()
     }
 
+    fun setSelectedSuperhero(superhero:SuperheroListResponseItem?)
+    {
+        _uiStates.update { it.copy(selectedSuperhero = superhero) }
+    }
+
     private fun getAllHeroes()
     {
         viewModelScope.coroutineScope.launch {
@@ -45,5 +50,6 @@ class SuperheroListingViewModel(
 data class SuperheroListingUIStates(
     val loading: Boolean = false,
     val list: List<SuperheroListResponseItem?> = arrayListOf(),
+    val selectedSuperhero :SuperheroListResponseItem? = null,
     val error: String = ""
 )

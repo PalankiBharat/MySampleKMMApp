@@ -54,7 +54,12 @@ dependencies {
     implementation("io.coil-kt:coil-compose:2.3.0")
 
     implementation("com.google.code.gson:gson:2.10.1")
-    implementation ("com.github.skydoves:cloudy:0.1.2")
+
+    val landscapistVersion = "2.2.1"
+    implementation ("com.github.skydoves:landscapist-coil:$landscapistVersion")
+    implementation ("com.github.skydoves:landscapist-transformation:$landscapistVersion")
+    implementation ("com.github.skydoves:landscapist-placeholder:$landscapistVersion")
+
 
 
 

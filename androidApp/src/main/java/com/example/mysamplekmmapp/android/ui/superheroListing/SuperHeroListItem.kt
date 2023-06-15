@@ -20,19 +20,29 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.example.mysamplekmmapp.data.model.SuperheroListResponseItem
+import com.skydoves.landscapist.ImageOptions
+import com.skydoves.landscapist.coil.CoilImage
+import com.skydoves.landscapist.components.rememberImageComponent
+import com.skydoves.landscapist.placeholder.shimmer.ShimmerPlugin
+import com.skydoves.landscapist.transformation.blur.BlurTransformationPlugin
 
 @Composable
-fun SuperheroCard(modifier: Modifier = Modifier , imageUrl: String, title: String) {
+fun SuperheroCard(modifier: Modifier = Modifier, imageUrl: String, title: String) {
     Box(
         modifier = modifier
             .fillMaxWidth()
             .height(250.dp)
     ) {
-        AsyncImage(
-            model  = imageUrl,
-            contentDescription = title,
-            contentScale = ContentScale.Crop,
-            modifier = Modifier.fillMaxSize().background(Color.Red)
+        CoilImage(
+            imageModel = { imageUrl },
+            imageOptions = ImageOptions(
+                contentScale = ContentScale.Crop
+            ),
+            modifier = Modifier
+                .fillMaxSize(),
+            component = rememberImageComponent {
+                +ShimmerPlugin(baseColor = Color.DarkGray, highlightColor = Color.Gray)
+            }
         )
 
         // Create the linear gradient overlay
