@@ -6,9 +6,3 @@
 //  Copyright © 2023 orgName. All rights reserved.
 //
 
-import Foundation
-class KMPUserPresenterHelper : KoinComponent {
-
-    val superheroListingViewModel : SuperheroListingViewModel by inject()
-
-}

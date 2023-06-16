@@ -16,9 +16,8 @@ val sharedModule = module {
     single { SuperheroApi() }
 }
 
-fun initKoin(appDeclaration: KoinAppDeclaration = {}) =
+fun initKoin() =
     startKoin {
-        appDeclaration()
         sharedModule
     }
 

@@ -5,7 +5,7 @@ import shared
 struct iOSApp: App {
     
     init(){
-        KoinDiModuleKt.d
+        KoinDiModuleKt.doInitKoin()
     }
 	var body: some Scene {
 		WindowGroup {

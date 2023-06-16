@@ -13,7 +13,9 @@ import KMMViewModelSwiftUI
 
 struct SuperheroListingScreen: View {
     
-    @StateViewModel var viewModel = SuperheroListingViewModel
+    var repo = AppRepository by inject()
+    
+    @StateViewModel var viewModel = SuperheroListingViewModel(repository:repo)
 
     
     var body: some View {
@@ -27,3 +29,5 @@ struct SuperheroListingScreen_Previews: PreviewProvider {
         SuperheroListingScreen()
     }
 }
+
+
