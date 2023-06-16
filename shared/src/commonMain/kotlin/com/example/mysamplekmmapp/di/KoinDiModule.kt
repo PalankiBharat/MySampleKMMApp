@@ -8,9 +8,17 @@ import io.ktor.client.HttpClient
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 import org.koin.core.context.startKoin
+import org.koin.dsl.KoinAppDeclaration
 import org.koin.dsl.module
 
 val sharedModule = module {
     single { AppRepository(get()) }
     single { SuperheroApi() }
 }
+
+fun initKoin(appDeclaration: KoinAppDeclaration = {}) =
+    startKoin {
+        appDeclaration()
+        sharedModule
+    }
+

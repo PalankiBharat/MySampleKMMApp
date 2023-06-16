@@ -1,2 +1,5 @@
 ${PODS_ROOT}/Target Support Files/Pods-iosApp/Pods-iosApp-frameworks.sh
+${BUILT_PRODUCTS_DIR}/KMMViewModelCore/KMMViewModelCore.framework
+${BUILT_PRODUCTS_DIR}/KMMViewModelCoreObjC/KMMViewModelCoreObjC.framework
+${BUILT_PRODUCTS_DIR}/KMMViewModelSwiftUI/KMMViewModelSwiftUI.framework
 ${PODS_ROOT}/../../shared/build/cocoapods/framework/shared.framework

@@ -1,16 +1,31 @@
 PODS:
+  - KMMViewModelCore (1.0.0-ALPHA-8):
+    - KMMViewModelCoreObjC (= 1.0.0-ALPHA-8)
+  - KMMViewModelCoreObjC (1.0.0-ALPHA-8)
+  - KMMViewModelSwiftUI (1.0.0-ALPHA-8):
+    - KMMViewModelCore (= 1.0.0-ALPHA-8)
   - shared (1.0)
 
 DEPENDENCIES:
+  - KMMViewModelSwiftUI (= 1.0.0-ALPHA-8)
   - shared (from `../shared`)
+
+SPEC REPOS:
+  trunk:
+    - KMMViewModelCore
+    - KMMViewModelCoreObjC
+    - KMMViewModelSwiftUI
 
 EXTERNAL SOURCES:
   shared:
     :path: "../shared"
 
 SPEC CHECKSUMS:
+  KMMViewModelCore: 926547ad8fb3499edc00747854f4c9e0e1a4466b
+  KMMViewModelCoreObjC: ded10fbef7fa031cdc937d6bb9f23af3a87872a7
+  KMMViewModelSwiftUI: 67f66ddaabf048263f58cdb6841a138784e509fb
   shared: 2d3b24a8fe27b7d9e65b8d075a9672fbc6a1aa10
 
-PODFILE CHECKSUM: f282da88f39e69507b0a255187c8a6b644477756
+PODFILE CHECKSUM: a4a30ece40d4f9368050952eca58e4c8427c121b
 
 COCOAPODS: 1.11.3

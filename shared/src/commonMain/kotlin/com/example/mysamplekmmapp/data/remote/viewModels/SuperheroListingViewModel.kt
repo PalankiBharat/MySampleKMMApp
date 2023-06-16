@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 
-class SuperheroListingViewModel(
+open class SuperheroListingViewModel(
     private val repository: AppRepository
 ) : KMMViewModel(){
 

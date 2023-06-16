@@ -3,13 +3,17 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		058557BB273AAA24004C7B11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557BA273AAA24004C7B11 /* Assets.xcassets */; };
 		058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */; };
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
+		2556C2082A3C038200AA407A /* SuperheroListingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2556C2072A3C038200AA407A /* SuperheroListingScreen.swift */; };
+		2556C20A2A3C0C5B00AA407A /* KMMViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2556C2092A3C0C5B00AA407A /* KMMViewModel.swift */; };
+		2556C20C2A3C0DE400AA407A /* SuperheroListingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2556C20B2A3C0DE400AA407A /* SuperheroListingViewModel.swift */; };
+		2556C20E2A3C106B00AA407A /* KMMKoinHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2556C20D2A3C106B00AA407A /* KMMKoinHelper.swift */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
 		9FC277CF83C2D99FBA2F40D2 /* Pods_iosApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4AF95C7569F9734433E27D1 /* Pods_iosApp.framework */; };
 /* End PBXBuildFile section */
@@ -18,6 +22,10 @@
 		058557BA273AAA24004C7B11 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2152FB032600AC8F00CF470E /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
+		2556C2072A3C038200AA407A /* SuperheroListingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperheroListingScreen.swift; sourceTree = "<group>"; };
+		2556C2092A3C0C5B00AA407A /* KMMViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMMViewModel.swift; sourceTree = "<group>"; };
+		2556C20B2A3C0DE400AA407A /* SuperheroListingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperheroListingViewModel.swift; sourceTree = "<group>"; };
+		2556C20D2A3C106B00AA407A /* KMMKoinHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMMKoinHelper.swift; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -46,13 +54,30 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		2556C2042A3C032000AA407A /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				2556C2092A3C0C5B00AA407A /* KMMViewModel.swift */,
+				2556C20D2A3C106B00AA407A /* KMMKoinHelper.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		2556C2062A3C033400AA407A /* SuperheroListingScreen */ = {
+			isa = PBXGroup;
+			children = (
+				2556C2072A3C038200AA407A /* SuperheroListingScreen.swift */,
+				2556C20B2A3C0DE400AA407A /* SuperheroListingViewModel.swift */,
+			);
+			path = SuperheroListingScreen;
+			sourceTree = "<group>";
+		};
 		40DF1A8E5895CF1E67324AA1 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
 				8E7B392E6E5A9DB81BE3DAD5 /* Pods-iosApp.debug.xcconfig */,
 				8400E5C2624C8069B8EC64DF /* Pods-iosApp.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -85,6 +110,8 @@
 		7555FF7D242A565900829871 /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
+				2556C2062A3C033400AA407A /* SuperheroListingScreen */,
+				2556C2042A3C032000AA407A /* Utils */,
 				058557BA273AAA24004C7B11 /* Assets.xcassets */,
 				7555FF82242A565900829871 /* ContentView.swift */,
 				7555FF8C242A565B00829871 /* Info.plist */,
@@ -208,8 +235,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2556C20E2A3C106B00AA407A /* KMMKoinHelper.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
+				2556C20C2A3C0DE400AA407A /* SuperheroListingViewModel.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
+				2556C20A2A3C0C5B00AA407A /* KMMViewModel.swift in Sources */,
+				2556C2082A3C038200AA407A /* SuperheroListingScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
