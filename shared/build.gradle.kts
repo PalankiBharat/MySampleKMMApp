@@ -5,6 +5,8 @@ plugins {
     id("com.google.devtools.ksp") version "1.8.20-1.0.10"
     id("kotlinx-serialization")
     id("com.rickclephas.kmp.nativecoroutines") version "1.0.0-ALPHA-9"
+    id("io.realm.kotlin") version "1.8.0"
+
 
 }
 
@@ -50,6 +52,8 @@ kotlin {
                 implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
                 implementation("io.github.aakira:napier:2.6.1")
                 api("com.rickclephas.kmm:kmm-viewmodel-core:1.0.0-ALPHA-8")
+                implementation("io.realm.kotlin:library-base:1.8.0") // Add to only use the local database
+
             }
         }
         val commonTest by getting {
