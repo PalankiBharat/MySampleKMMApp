@@ -19,4 +19,5 @@ expect class NetworkUtils() {
     fun isNetworkAvailable(): Boolean
 }
 
+
 expect fun platformModule(): Module

@@ -18,18 +18,17 @@ fun SuperheroListScreen(
 ) {
     Column {
         val uiStates = viewModel.uiStates.collectAsStateWithLifecycle()
+        val list = viewModel.getAllHeroesNew().collectAsStateWithLifecycle(emptyList())
         LazyVerticalGrid(columns = GridCells.Fixed(2)) {
-            items(uiStates.value.list.size) { index ->
-                val item = uiStates.value.list[index]
-                if (item != null) {
-                    SuperheroCard(
-                        modifier = Modifier.clickable {
-                            onItemClick(uiStates.value.list[index])
-                        },
-                        imageUrl = item.images?.lg ?: "",
-                        title = item.name ?: ""
-                    )
-                }
+            items(list.value.size) { index ->
+                val item = list.value[index]
+                SuperheroCard(
+                    modifier = Modifier.clickable {
+                        onItemClick(uiStates.value.list[index])
+                    },
+                    imageUrl = item.imageUrl,
+                    title = item.name
+                )
             }
         }
     }

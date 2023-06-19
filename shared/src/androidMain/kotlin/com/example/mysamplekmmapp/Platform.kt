@@ -50,6 +50,7 @@ actual fun platformModule() = module {
     viewModel { SuperheroListingViewModel(get()) }
 }
 
+
 fun Context.checkForInternetConnection(): Boolean {
     val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
     val activeNetwork = connectivityManager.activeNetwork ?: return false

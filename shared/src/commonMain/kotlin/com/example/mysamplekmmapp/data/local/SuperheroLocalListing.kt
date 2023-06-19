@@ -23,6 +23,7 @@ class Appearance : RealmObject {
 }
 
 class SuperHero : RealmObject {
+
     @PrimaryKey
     var _id: ObjectId = ObjectId.invoke()
     var image: String? = null

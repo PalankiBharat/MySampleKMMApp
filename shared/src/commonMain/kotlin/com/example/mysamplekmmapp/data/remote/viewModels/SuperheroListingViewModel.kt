@@ -12,14 +12,16 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import org.koin.core.component.KoinComponent
 
 
 open class SuperheroListingViewModel(
     private val repository: AppRepository
-) : KMMViewModel(){
+) : KMMViewModel(), KoinComponent{
 
     private val _uiStates = MutableStateFlow(SuperheroListingUIStates())
     @NativeCoroutinesState
@@ -33,7 +35,8 @@ open class SuperheroListingViewModel(
 
 
     init {
-        getAllHeroes()
+        getAllHeroesNew()
+      //  getAllHeroes()
     }
 
     fun setSelectedSuperhero(superhero:SuperheroListResponseItem?)
@@ -44,34 +47,17 @@ open class SuperheroListingViewModel(
     private fun getAllHeroes()
     {
         viewModelScope.coroutineScope.launch {
-            _uiStates.update { it.copy(loading = true) }
             try {
                 val data = repository.getSuperheroList()
-                _uiStates.update { it.copy(loading = true, list = data) }
             }
             catch (e:Exception)
             {
-                Napier.d( "getAllHeroes: "+e.message)
              _uiStates.update { it.copy(loading = false, error = e.message?:"An Unknown Exception Occurred") }
             }
         }
     }
 
-    private fun getAllHeroesNew()
-    {
-        viewModelScope.coroutineScope.launch {
-            _uiStates.update { it.copy(loading = true) }
-            try {
-                val data = repository.getSuperheroList()
-                _uiStates.update { it.copy(loading = true, newList = data.map { superhero-> superhero.toSuperheroDataHolder() }) }
-            }
-            catch (e:Exception)
-            {
-                Napier.d( "getAllHeroes: "+e.message)
-                _uiStates.update { it.copy(loading = false, error = e.message?:"An Unknown Exception Occurred") }
-            }
-        }
-    }
+    fun getAllHeroesNew() = repository.getSuperheroesFromLocal()
 }
 
 data class SuperheroListingUIStates(

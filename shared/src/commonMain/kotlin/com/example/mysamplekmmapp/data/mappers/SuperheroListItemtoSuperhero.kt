@@ -1,3 +1,4 @@
+
 package com.example.mysamplekmmapp.data.mappers
 
 import com.example.mysamplekmmapp.data.local.SuperHero
@@ -5,46 +6,45 @@ import com.example.mysamplekmmapp.data.model.SuperheroListResponseItem
 import io.realm.kotlin.ext.toRealmList
 
 fun SuperheroListResponseItem.toSuperheroLocal():SuperHero{
+    val remoteSuperhero = this
     return SuperHero().apply {
-        this.name = this@toSuperheroLocal.name
-        this.image = this@toSuperheroLocal.images?.lg
+        this.name = remoteSuperhero.name
+        this.image = remoteSuperhero.images?.lg
         this.appearance.apply {
-            this?.gender = this@toSuperheroLocal.appearance?.gender
-            this@toSuperheroLocal.appearance?.height?.let {
+            this?.gender = remoteSuperhero.appearance?.gender
+            remoteSuperhero.appearance?.height?.let {
                 this?.height = it.toRealmList()
             }
-            this@toSuperheroLocal.appearance?.weight?.let {
+            remoteSuperhero.appearance?.weight?.let {
                 this?.weight = it.toRealmList()
             }
         }
         this.powerstats.apply {
-            this?.speed = this@toSuperheroLocal.powerstats?.speed
-            this?.intelligence = this@toSuperheroLocal.powerstats?.intelligence
-            this?.power = this@toSuperheroLocal.powerstats?.power
-            this?.combat = this@toSuperheroLocal.powerstats?.combat
-            this?.durability = this@toSuperheroLocal.powerstats?.durability
-            this?.strength = this@toSuperheroLocal.powerstats?.strength
+            this?.speed = remoteSuperhero.powerstats?.speed
+            this?.intelligence = remoteSuperhero.powerstats?.intelligence
+            this?.power = remoteSuperhero.powerstats?.power
+            this?.combat = remoteSuperhero.powerstats?.combat
+            this?.durability = remoteSuperhero.powerstats?.durability
+            this?.strength = remoteSuperhero.powerstats?.strength
         }
-        this.id = this@toSuperheroLocal.id
+        this.id = remoteSuperhero.id
         this.connections.apply {
-            this?.relatives = this@toSuperheroLocal.connections?.relatives
-            this?.groupAffiliation = this@toSuperheroLocal.connections?.groupAffiliation
+            this?.relatives = remoteSuperhero.connections?.relatives
+            this?.groupAffiliation = remoteSuperhero.connections?.groupAffiliation
         }
-        this.occupation = this@toSuperheroLocal.work?.occupation
+        this.occupation = remoteSuperhero.work?.occupation
 
         this.biography.apply {
-            this?.fullName = this@toSuperheroLocal.biography?.fullName
-            this?.firstAppearance = this@toSuperheroLocal.biography?.firstAppearance
-            this?.publisher = this@toSuperheroLocal.biography?.publisher
-            this?.alterEgos = this@toSuperheroLocal.biography?.alterEgos
-            this@toSuperheroLocal.biography?.aliases?.let {
+            this?.fullName = remoteSuperhero.biography?.fullName
+            this?.firstAppearance = remoteSuperhero.biography?.firstAppearance
+            this?.publisher = remoteSuperhero.biography?.publisher
+            this?.alterEgos = remoteSuperhero.biography?.alterEgos
+            remoteSuperhero.biography?.aliases?.let {
                 this?.aliases =  it.toRealmList()
             }
-            this?.alignment = this@toSuperheroLocal.biography?.alignment
-            this?.placeOfBirth = this@toSuperheroLocal.biography?.placeOfBirth
+            this?.alignment = remoteSuperhero.biography?.alignment
+            this?.placeOfBirth = remoteSuperhero.biography?.placeOfBirth
         }
-
-
-
     }
+
 }

@@ -23,6 +23,9 @@ val sharedModule = module {
     single { AppRepository(get(), get()) }
     single { SuperheroApi() }
     single { provideRealm() }
+    single { SuperheroListingViewModel(get()) }
+    platformModule()
+
 }
 
 fun initKoin(
@@ -31,7 +34,6 @@ fun initKoin(
     startKoin {
         appDeclaration()
         modules(sharedModule)
-        platformModule()
     }
 
 fun initKoin() = initKoin() {}

@@ -16,15 +16,15 @@ import org.koin.dsl.module
 class MyApplication :Application() {
     override fun onCreate() {
         super.onCreate()
-
+        initLogger()
         initKoin {
             androidLogger()
             androidContext(this@MyApplication)
             modules(sharedModule)
             modules(module {
                 single<Context> { this@MyApplication }
-                NetworkUtils(get<Context>())
-                viewModel { SuperheroListingViewModel(get()) }
+                // with the below code it is working
+                //viewModel { SuperheroListingViewModel(get()) }
             })
 
 
