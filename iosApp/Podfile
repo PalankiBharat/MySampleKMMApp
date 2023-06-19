@@ -1,6 +1,7 @@
 target 'iosApp' do
   use_frameworks!
-  platform :ios, '14.1'
+  platform :ios, '14.5'
   pod 'shared', :path => '../shared'
   pod 'KMMViewModelSwiftUI', '1.0.0-ALPHA-8'
+  pod 'Kingfisher', '~> 7.0'
 end

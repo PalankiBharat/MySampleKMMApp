@@ -13,7 +13,7 @@
 		2556C2082A3C038200AA407A /* SuperheroListingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2556C2072A3C038200AA407A /* SuperheroListingScreen.swift */; };
 		2556C20A2A3C0C5B00AA407A /* KMMViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2556C2092A3C0C5B00AA407A /* KMMViewModel.swift */; };
 		2556C20C2A3C0DE400AA407A /* SuperheroListingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2556C20B2A3C0DE400AA407A /* SuperheroListingViewModel.swift */; };
-		2556C20E2A3C106B00AA407A /* KMMKoinHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2556C20D2A3C106B00AA407A /* KMMKoinHelper.swift */; };
+		256F1F0B2A3E11920089136A /* SuperHeroCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256F1F0A2A3E11920089136A /* SuperHeroCard.swift */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
 		9FC277CF83C2D99FBA2F40D2 /* Pods_iosApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4AF95C7569F9734433E27D1 /* Pods_iosApp.framework */; };
 /* End PBXBuildFile section */
@@ -25,7 +25,7 @@
 		2556C2072A3C038200AA407A /* SuperheroListingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperheroListingScreen.swift; sourceTree = "<group>"; };
 		2556C2092A3C0C5B00AA407A /* KMMViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMMViewModel.swift; sourceTree = "<group>"; };
 		2556C20B2A3C0DE400AA407A /* SuperheroListingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperheroListingViewModel.swift; sourceTree = "<group>"; };
-		2556C20D2A3C106B00AA407A /* KMMKoinHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMMKoinHelper.swift; sourceTree = "<group>"; };
+		256F1F0A2A3E11920089136A /* SuperHeroCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperHeroCard.swift; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -58,7 +58,6 @@
 			isa = PBXGroup;
 			children = (
 				2556C2092A3C0C5B00AA407A /* KMMViewModel.swift */,
-				2556C20D2A3C106B00AA407A /* KMMKoinHelper.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -68,6 +67,7 @@
 			children = (
 				2556C2072A3C038200AA407A /* SuperheroListingScreen.swift */,
 				2556C20B2A3C0DE400AA407A /* SuperheroListingViewModel.swift */,
+				256F1F0A2A3E11920089136A /* SuperHeroCard.swift */,
 			);
 			path = SuperheroListingScreen;
 			sourceTree = "<group>";
@@ -235,9 +235,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2556C20E2A3C106B00AA407A /* KMMKoinHelper.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				2556C20C2A3C0DE400AA407A /* SuperheroListingViewModel.swift in Sources */,
+				256F1F0B2A3E11920089136A /* SuperHeroCard.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
 				2556C20A2A3C0C5B00AA407A /* KMMViewModel.swift in Sources */,
 				2556C2082A3C038200AA407A /* SuperheroListingScreen.swift in Sources */,
@@ -372,6 +372,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"iosApp/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iosApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -379,7 +380,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = orgIdentifier.iosApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -392,6 +393,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"iosApp/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iosApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -399,7 +401,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = orgIdentifier.iosApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

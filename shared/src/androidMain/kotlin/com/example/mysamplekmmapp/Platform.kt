@@ -3,11 +3,14 @@ package com.example.mysamplekmmapp
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
+import com.example.mysamplekmmapp.data.remote.viewModels.SuperheroListingViewModel
 import io.github.aakira.napier.DebugAntilog
 import io.github.aakira.napier.Napier
 import io.ktor.client.HttpClient
 import io.ktor.client.HttpClientConfig
 import io.ktor.client.engine.okhttp.OkHttp
+import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.dsl.module
 import java.util.concurrent.TimeUnit
 
 class AndroidPlatform : Platform {
@@ -41,6 +44,10 @@ actual class NetworkUtils actual constructor() {
     actual fun isNetworkAvailable(): Boolean {
        return context.checkForInternetConnection()
     }
+}
+
+actual fun platformModule() = module {
+    viewModel { SuperheroListingViewModel(get()) }
 }
 
 fun Context.checkForInternetConnection(): Boolean {

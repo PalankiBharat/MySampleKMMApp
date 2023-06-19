@@ -13,14 +13,23 @@ import KMMViewModelSwiftUI
 
 struct SuperheroListingScreen: View {
     
-    var repo = AppRepository by inject()
-    
-    @StateViewModel var viewModel = SuperheroListingViewModel(repository:repo)
-
+    @StateViewModel var viewModel = ViewModels().getHomeViewModel()
     
     var body: some View {
+        let superheroList = self.viewModel.uiStates.newList as! [SuperheroDetailsDataHolder]
         
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+
+        let gridItems = [
+               GridItem(.flexible()),
+               GridItem(.flexible())
+           ]
+        
+        LazyHGrid(rows: gridItems){
+            ForEach(superheroList, id:\.name){superhero in
+                SuperheroCard(imageUrl: superhero.imageUrl , title:superhero.name )
+            }
+           
+        }
     }
 }
 

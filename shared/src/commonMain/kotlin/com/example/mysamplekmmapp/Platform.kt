@@ -3,6 +3,7 @@ package com.example.mysamplekmmapp
 import io.ktor.client.HttpClient
 import io.ktor.client.HttpClientConfig
 import io.ktor.http.ContentType
+import org.koin.core.module.Module
 
 interface Platform {
     val name: String
@@ -17,3 +18,5 @@ expect fun initLogger()
 expect class NetworkUtils() {
     fun isNetworkAvailable(): Boolean
 }
+
+expect fun platformModule(): Module

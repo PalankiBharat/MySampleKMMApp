@@ -10,8 +10,12 @@ fun SuperheroListResponseItem.toSuperheroLocal():SuperHero{
         this.image = this@toSuperheroLocal.images?.lg
         this.appearance.apply {
             this?.gender = this@toSuperheroLocal.appearance?.gender
-            this?.height = this@toSuperheroLocal.appearance?.height?.toRealmList()
-            this?.weight = this@toSuperheroLocal.appearance?.weight?.toRealmList()
+            this@toSuperheroLocal.appearance?.height?.let {
+                this?.height = it.toRealmList()
+            }
+            this@toSuperheroLocal.appearance?.weight?.let {
+                this?.weight = it.toRealmList()
+            }
         }
         this.powerstats.apply {
             this?.speed = this@toSuperheroLocal.powerstats?.speed
@@ -33,7 +37,9 @@ fun SuperheroListResponseItem.toSuperheroLocal():SuperHero{
             this?.firstAppearance = this@toSuperheroLocal.biography?.firstAppearance
             this?.publisher = this@toSuperheroLocal.biography?.publisher
             this?.alterEgos = this@toSuperheroLocal.biography?.alterEgos
-            this?.aliases = this@toSuperheroLocal.biography?.aliases?.toRealmList()
+            this@toSuperheroLocal.biography?.aliases?.let {
+                this?.aliases =  it.toRealmList()
+            }
             this?.alignment = this@toSuperheroLocal.biography?.alignment
             this?.placeOfBirth = this@toSuperheroLocal.biography?.placeOfBirth
         }
