@@ -12,25 +12,31 @@ import KMMViewModelSwiftUI
 
 
 struct SuperheroListingScreen: View {
+   
+    @StateViewModel var viewModel = KoinHelperIOS().getSuperheroListingViewModel()
     
-    @StateViewModel var viewModel = ViewModels().getHomeViewModel()
     
     var body: some View {
-        let superheroList = self.viewModel.uiStates.newList as! [SuperheroDetailsDataHolder]
+        let superheroList = self.viewModel.superheroListingStates
         
-
+        
         let gridItems = [
-               GridItem(.flexible()),
-               GridItem(.flexible())
-           ]
+            GridItem(.adaptive(minimum: 100)),
+            GridItem(.adaptive(minimum: 100))
+        ]
         
-        LazyHGrid(rows: gridItems){
-            ForEach(superheroList, id:\.name){superhero in
-                SuperheroCard(imageUrl: superhero.imageUrl , title:superhero.name )
+        ScrollView{
+            LazyVGrid(columns: gridItems){
+                ForEach(superheroList, id:\.name){superhero in
+                    SuperheroCard(imageUrl: superhero.imageUrl , title:superhero.name )
+                }
             }
-           
+        }.onAppear{
+            UIScrollView.appearance().bounces = false
         }
     }
+ 
+    
 }
 
 struct SuperheroListingScreen_Previews: PreviewProvider {

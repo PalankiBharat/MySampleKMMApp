@@ -7,25 +7,4 @@
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
    </FileRef>
-   <FileRef
-      location = "group:Podfile"
-      assignedFileDataType = "public.ruby-script">
-   </FileRef>
-   <Group
-      location = "group:Pods"
-      name = "Frameworks">
-      <Group
-         location = "group:Pods"
-         name = "iOS">
-         <FileRef
-            location = "developer:Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Combine.framework">
-         </FileRef>
-         <FileRef
-            location = "developer:Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework">
-         </FileRef>
-         <FileRef
-            location = "developer:Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/SwiftUI.framework">
-         </FileRef>
-      </Group>
-   </Group>
 </Workspace>

@@ -1,4 +1,5 @@
 PODS:
+  - Kingfisher (7.8.0)
   - KMMViewModelCore (1.0.0-ALPHA-8):
     - KMMViewModelCoreObjC (= 1.0.0-ALPHA-8)
   - KMMViewModelCoreObjC (1.0.0-ALPHA-8)
@@ -7,11 +8,13 @@ PODS:
   - shared (1.0)
 
 DEPENDENCIES:
+  - Kingfisher (~> 7.0)
   - KMMViewModelSwiftUI (= 1.0.0-ALPHA-8)
   - shared (from `../shared`)
 
 SPEC REPOS:
   trunk:
+    - Kingfisher
     - KMMViewModelCore
     - KMMViewModelCoreObjC
     - KMMViewModelSwiftUI
@@ -21,11 +24,12 @@ EXTERNAL SOURCES:
     :path: "../shared"
 
 SPEC CHECKSUMS:
+  Kingfisher: 0656e1b064bfc1ca1cd04e033f617a86559696e9
   KMMViewModelCore: 926547ad8fb3499edc00747854f4c9e0e1a4466b
   KMMViewModelCoreObjC: ded10fbef7fa031cdc937d6bb9f23af3a87872a7
   KMMViewModelSwiftUI: 67f66ddaabf048263f58cdb6841a138784e509fb
   shared: 2d3b24a8fe27b7d9e65b8d075a9672fbc6a1aa10
 
-PODFILE CHECKSUM: a4a30ece40d4f9368050952eca58e4c8427c121b
+PODFILE CHECKSUM: d7ee56e0a749be26d6743921c71e568c7331e9d0
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.12.1

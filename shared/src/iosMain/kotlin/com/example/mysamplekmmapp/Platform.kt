@@ -44,3 +44,7 @@ actual fun platformModule() = module{
     }
 }
 
+object KoinHelper{
+    val koinHelper = KoinHelperIOS()
+}
+

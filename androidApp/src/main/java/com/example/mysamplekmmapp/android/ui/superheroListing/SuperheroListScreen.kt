@@ -18,7 +18,7 @@ fun SuperheroListScreen(
 ) {
     Column {
         val uiStates = viewModel.uiStates.collectAsStateWithLifecycle()
-        val list = viewModel.getAllHeroesNew().collectAsStateWithLifecycle(emptyList())
+        val list = viewModel.superheroListingStates.collectAsStateWithLifecycle(emptyList())
         LazyVerticalGrid(columns = GridCells.Fixed(2)) {
             items(list.value.size) { index ->
                 val item = list.value[index]
