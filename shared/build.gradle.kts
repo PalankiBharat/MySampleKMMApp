@@ -6,11 +6,15 @@ plugins {
     id("kotlinx-serialization")
     id("com.rickclephas.kmp.nativecoroutines") version "1.0.0-ALPHA-9"
     id("io.realm.kotlin") version "1.9.1"
+    id("app.cash.sqldelight") version "2.0.0-alpha05"
 
 
 }
 
 val ktorVersion = "2.3.0"
+val sqlDelightVersion = "2.0.0-rc01"
+val dateTimeVersion = "0.4.0"
+
 
 kotlin.sourceSets.all {
     languageSettings.optIn("kotlin.experimental.ExperimentalObjCName")
@@ -44,16 +48,29 @@ kotlin {
         val commonMain by getting{
             dependencies {
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1")
-                implementation("io.insert-koin:koin-core:3.3.3")
+                implementation("io.insert-koin:koin-core:3.3.3"){
+                    because("DI for KMM")
+                }
                 //Only needed when you want to use Kotlin Serialization
                 implementation("io.ktor:ktor-client-core:$ktorVersion")
                 implementation("io.ktor:ktor-client-serialization:$ktorVersion")
                 implementation("io.ktor:ktor-client-logging:$ktorVersion")
                 implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
                 implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
-                implementation("io.github.aakira:napier:2.6.1")
-                api("com.rickclephas.kmm:kmm-viewmodel-core:1.0.0-ALPHA-8")
-                implementation("io.realm.kotlin:library-base:1.9.1") // Add to only use the local database
+
+
+                implementation("io.github.aakira:napier:2.6.1"){
+                    because("Used for Logging in KMM shared module")
+                }
+                api("com.rickclephas.kmm:kmm-viewmodel-core:1.0.0-ALPHA-8"){
+                    because("Used for sharing viewModels")
+                }
+                implementation("io.realm.kotlin:library-base:1.9.1") {
+                    because("Used for storing data offline in NO SQL format")
+                }
+
+                implementation("org.jetbrains.kotlinx:kotlinx-datetime:$dateTimeVersion")
+
 
             }
         }
@@ -69,6 +86,8 @@ kotlin {
             dependencies {
                 implementation("io.insert-koin:koin-androidx-compose:3.4.2")
                 implementation("io.ktor:ktor-client-okhttp:$ktorVersion")
+                implementation("app.cash.sqldelight:android-driver:$sqlDelightVersion")
+
             }
         }
         val androidUnitTest by getting
@@ -82,6 +101,8 @@ kotlin {
             iosSimulatorArm64Main.dependsOn(this)
             dependencies{
                 implementation("io.ktor:ktor-client-ios:$ktorVersion")
+                implementation("app.cash.sqldelight:native-driver:$sqlDelightVersion")
+
             }
         }
         val iosX64Test by getting
