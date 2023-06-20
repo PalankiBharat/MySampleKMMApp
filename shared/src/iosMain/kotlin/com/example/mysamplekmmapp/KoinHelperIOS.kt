@@ -14,9 +14,3 @@ class KoinHelperIOS : KoinComponent {
     private val superheroViewModel : SuperheroListingViewModel  by inject()
     fun getSuperheroListingViewModel(): SuperheroListingViewModel = superheroViewModel
 }
-
-fun initKoin(){
-    startKoin {
-        sharedModule
-    }
-}

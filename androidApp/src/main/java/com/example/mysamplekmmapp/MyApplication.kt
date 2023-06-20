@@ -23,8 +23,6 @@ class MyApplication :Application() {
             modules(sharedModule)
             modules(module {
                 single<Context> { this@MyApplication }
-                // with the below code it is working
-                //viewModel { SuperheroListingViewModel(get()) }
             })
 
 
