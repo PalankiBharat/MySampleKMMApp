@@ -21,14 +21,16 @@ struct SuperheroListingScreen: View {
         
         
         let gridItems = [
-            GridItem(.adaptive(minimum: 100)),
-            GridItem(.adaptive(minimum: 100))
+            GridItem(.adaptive(minimum: 100), spacing: 0),
+            GridItem(.adaptive(minimum: 100), spacing: 0)
         ]
         
         ScrollView{
             LazyVGrid(columns: gridItems){
                 ForEach(superheroList, id:\.name){superhero in
-                    SuperheroCard(imageUrl: superhero.imageUrl , title:superhero.name )
+                    NavigationLink(destination: {SuperheroDetailsScreen(navigateBack: {}, superhero: superhero)}){
+                        SuperheroCard(imageUrl: superhero.imageUrl , title:superhero.name)
+                    }
                 }
             }
         }.onAppear{

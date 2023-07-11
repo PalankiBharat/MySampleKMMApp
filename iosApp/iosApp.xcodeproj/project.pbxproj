@@ -12,8 +12,8 @@
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
 		2556C2082A3C038200AA407A /* SuperheroListingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2556C2072A3C038200AA407A /* SuperheroListingScreen.swift */; };
 		2556C20A2A3C0C5B00AA407A /* KMMViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2556C2092A3C0C5B00AA407A /* KMMViewModel.swift */; };
-		2556C20C2A3C0DE400AA407A /* SuperheroListingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2556C20B2A3C0DE400AA407A /* SuperheroListingViewModel.swift */; };
 		256F1F0B2A3E11920089136A /* SuperHeroCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256F1F0A2A3E11920089136A /* SuperHeroCard.swift */; };
+		259BFEC42A4D245C0078EE7C /* SuperheroDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259BFEC32A4D245C0078EE7C /* SuperheroDetails.swift */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
 		F4B2DC13AF1737651E0A56C0 /* Pods_iosApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8929B54681497E96259E195B /* Pods_iosApp.framework */; };
 /* End PBXBuildFile section */
@@ -25,8 +25,8 @@
 		2152FB032600AC8F00CF470E /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
 		2556C2072A3C038200AA407A /* SuperheroListingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperheroListingScreen.swift; sourceTree = "<group>"; };
 		2556C2092A3C0C5B00AA407A /* KMMViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMMViewModel.swift; sourceTree = "<group>"; };
-		2556C20B2A3C0DE400AA407A /* SuperheroListingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperheroListingViewModel.swift; sourceTree = "<group>"; };
 		256F1F0A2A3E11920089136A /* SuperHeroCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperHeroCard.swift; sourceTree = "<group>"; };
+		259BFEC32A4D245C0078EE7C /* SuperheroDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperheroDetails.swift; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -66,10 +66,17 @@
 			isa = PBXGroup;
 			children = (
 				2556C2072A3C038200AA407A /* SuperheroListingScreen.swift */,
-				2556C20B2A3C0DE400AA407A /* SuperheroListingViewModel.swift */,
 				256F1F0A2A3E11920089136A /* SuperHeroCard.swift */,
 			);
 			path = SuperheroListingScreen;
+			sourceTree = "<group>";
+		};
+		259BFEC22A4D243E0078EE7C /* SuperheroDetails */ = {
+			isa = PBXGroup;
+			children = (
+				259BFEC32A4D245C0078EE7C /* SuperheroDetails.swift */,
+			);
+			path = SuperheroDetails;
 			sourceTree = "<group>";
 		};
 		40DF1A8E5895CF1E67324AA1 /* Pods */ = {
@@ -102,6 +109,7 @@
 		7555FF7D242A565900829871 /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
+				259BFEC22A4D243E0078EE7C /* SuperheroDetails */,
 				2556C2062A3C033400AA407A /* SuperheroListingScreen */,
 				2556C2042A3C032000AA407A /* Utils */,
 				058557BA273AAA24004C7B11 /* Assets.xcassets */,
@@ -236,11 +244,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
-				2556C20C2A3C0DE400AA407A /* SuperheroListingViewModel.swift in Sources */,
 				256F1F0B2A3E11920089136A /* SuperHeroCard.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
 				2556C20A2A3C0C5B00AA407A /* KMMViewModel.swift in Sources */,
 				2556C2082A3C038200AA407A /* SuperheroListingScreen.swift in Sources */,
+				259BFEC42A4D245C0078EE7C /* SuperheroDetails.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,7 +380,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"iosApp/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iosApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -393,7 +401,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"iosApp/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iosApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

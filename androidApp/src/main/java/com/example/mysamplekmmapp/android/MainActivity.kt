@@ -15,6 +15,7 @@ import com.example.mysamplekmmapp.android.ui.superheroDetails.SuperheroDetailsSc
 import com.example.mysamplekmmapp.android.ui.superheroListing.SuperheroListScreen
 import com.example.mysamplekmmapp.android.utils.NavigationRoutes.SuperheroDetailsScreen
 import com.example.mysamplekmmapp.android.utils.NavigationRoutes.SuperheroListingScreen
+import com.example.mysamplekmmapp.data.mappers.toSuperheroDataHolder
 import com.example.mysamplekmmapp.data.remote.viewModels.SuperheroListingViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

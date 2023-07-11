@@ -1,49 +1,59 @@
 
 package com.example.mysamplekmmapp.data.mappers
 
+import com.example.mysamplekmmapp.data.local.Appearance
+import com.example.mysamplekmmapp.data.local.Biography
+import com.example.mysamplekmmapp.data.local.Connections
+import com.example.mysamplekmmapp.data.local.Powerstats
 import com.example.mysamplekmmapp.data.local.SuperHero
 import com.example.mysamplekmmapp.data.model.SuperheroListResponseItem
 import io.realm.kotlin.ext.toRealmList
 
 fun SuperheroListResponseItem.toSuperheroLocal():SuperHero{
     val remoteSuperhero = this
+
     return SuperHero().apply {
-        this.name = remoteSuperhero.name
-        this.image = remoteSuperhero.images?.lg
-        this.appearance.apply {
-            this?.gender = remoteSuperhero.appearance?.gender
+        val localSuperhero = this
+        localSuperhero.name = remoteSuperhero.name
+        localSuperhero.image = remoteSuperhero.images?.lg
+        localSuperhero.appearance = Appearance().apply {
+            val appearance = this
+            appearance.gender = remoteSuperhero.appearance?.gender
             remoteSuperhero.appearance?.height?.let {
-                this?.height = it.toRealmList()
+                this.height = it.toRealmList()
             }
             remoteSuperhero.appearance?.weight?.let {
-                this?.weight = it.toRealmList()
+                this.weight = it.toRealmList()
             }
         }
-        this.powerstats.apply {
-            this?.speed = remoteSuperhero.powerstats?.speed
-            this?.intelligence = remoteSuperhero.powerstats?.intelligence
-            this?.power = remoteSuperhero.powerstats?.power
-            this?.combat = remoteSuperhero.powerstats?.combat
-            this?.durability = remoteSuperhero.powerstats?.durability
-            this?.strength = remoteSuperhero.powerstats?.strength
+        localSuperhero.powerstats = Powerstats().apply {
+            val powerstats = this
+            powerstats.speed = remoteSuperhero.powerstats?.speed
+            powerstats.intelligence = remoteSuperhero.powerstats?.intelligence
+            powerstats.power = remoteSuperhero.powerstats?.power
+            powerstats.combat = remoteSuperhero.powerstats?.combat
+            powerstats.durability = remoteSuperhero.powerstats?.durability
+            powerstats.strength = remoteSuperhero.powerstats?.strength
         }
-        this.id = remoteSuperhero.id
-        this.connections.apply {
-            this?.relatives = remoteSuperhero.connections?.relatives
-            this?.groupAffiliation = remoteSuperhero.connections?.groupAffiliation
-        }
-        this.occupation = remoteSuperhero.work?.occupation
 
-        this.biography.apply {
-            this?.fullName = remoteSuperhero.biography?.fullName
-            this?.firstAppearance = remoteSuperhero.biography?.firstAppearance
-            this?.publisher = remoteSuperhero.biography?.publisher
-            this?.alterEgos = remoteSuperhero.biography?.alterEgos
+        localSuperhero.id = remoteSuperhero.id
+        localSuperhero.connections= Connections().apply {
+            this.relatives = remoteSuperhero.connections?.relatives
+            this.groupAffiliation = remoteSuperhero.connections?.groupAffiliation
+        }
+        localSuperhero.occupation = remoteSuperhero.work?.occupation
+
+        localSuperhero.biography= Biography().apply {
+            val biography = this
+            biography.fullName = remoteSuperhero.biography?.fullName
+            biography.firstAppearance = remoteSuperhero.biography?.firstAppearance
+            biography.publisher = remoteSuperhero.biography?.publisher
+            biography.alterEgos = remoteSuperhero.biography?.alterEgos
             remoteSuperhero.biography?.aliases?.let {
-                this?.aliases =  it.toRealmList()
+                this.aliases =  it.toRealmList()
             }
-            this?.alignment = remoteSuperhero.biography?.alignment
-            this?.placeOfBirth = remoteSuperhero.biography?.placeOfBirth
+            biography.alignment = remoteSuperhero.biography?.alignment
+            biography.placeOfBirth = remoteSuperhero.biography?.placeOfBirth
         }
     }
 

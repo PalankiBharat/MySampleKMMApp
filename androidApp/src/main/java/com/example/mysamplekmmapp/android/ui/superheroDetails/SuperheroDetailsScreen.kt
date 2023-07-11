@@ -1,5 +1,6 @@
 package com.example.mysamplekmmapp.android.ui.superheroDetails
 
+import android.util.Log
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
@@ -58,136 +59,140 @@ fun SuperheroDetailsScreen(
     navigateBack: () -> Unit,
 ) {
     val superhero =
-        vm.uiStates.collectAsStateWithLifecycle().value.selectedSuperhero.toSuperheroDataHolder()
+        vm.uiStates.collectAsStateWithLifecycle().value.selectedSuperhero
     val scrollState = rememberScrollState()
+    Log.d("TAG", "SuperheroDetailsScreen: "+superhero)
 
-    Column(
-        modifier
-            .fillMaxSize()
-            .background(
-                appPrimaryColor
-            )
-            .verticalScroll(scrollState),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .aspectRatio(1.2f)
+    if (superhero!=null)
+    {
+        Column(
+            modifier
+                .fillMaxSize()
+                .background(
+                    appPrimaryColor
+                )
+                .verticalScroll(scrollState),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            CoilImage(
+            Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .fillMaxHeight(0.9f)
-                    .align(Alignment.TopCenter),
-                imageOptions = ImageOptions(
-                    contentScale = ContentScale.FillBounds
-                ),
-                imageModel = { superhero.imageUrl },
-                component = rememberImageComponent {
-                    +BlurTransformationPlugin(radius = 15)
-                    +ShimmerPlugin(baseColor = Color.DarkGray, highlightColor = Color.Gray)
-                }
+                    .aspectRatio(1.2f)
+            ) {
+                CoilImage(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .fillMaxHeight(0.9f)
+                        .align(Alignment.TopCenter),
+                    imageOptions = ImageOptions(
+                        contentScale = ContentScale.FillBounds
+                    ),
+                    imageModel = { superhero.imageUrl },
+                    component = rememberImageComponent {
+                        +BlurTransformationPlugin(radius = 15)
+                        +ShimmerPlugin(baseColor = Color.DarkGray, highlightColor = Color.Gray)
+                    }
+                )
+
+                CoilImage(
+                    imageModel = { superhero.imageUrl },
+                    modifier = Modifier
+                        .align(Alignment.BottomCenter)
+                        .fillMaxWidth(0.56f)
+                        .fillMaxHeight(0.85f)
+                        .clip(RoundedCornerShape(20.dp))
+                        .shadow(elevation = 10.dp),
+                    imageOptions = ImageOptions(
+                        contentScale = ContentScale.FillBounds
+                    )
+                )
+            }
+
+            Text(
+                text = superhero.name,
+                textAlign = TextAlign.Center,
+                color = Color.White,
+                fontSize = 22.sp,
+                fontWeight = FontWeight.Bold,
             )
 
-            CoilImage(
-                imageModel = { superhero.imageUrl },
+            Text(
+                modifier = Modifier.padding(top = 10.dp),
+                text = "BIO",
+                textAlign = TextAlign.Center,
+                color = Color.White,
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold,
+            )
+
+            Text(
+                modifier = Modifier.padding(horizontal = 10.dp),
+                text = superhero.bio,
+                textAlign = TextAlign.Center,
+                color = Color.White,
+                fontSize = 16.sp,
+                fontWeight = FontWeight.SemiBold,
+            )
+
+            Row(
                 modifier = Modifier
-                    .align(Alignment.BottomCenter)
-                    .fillMaxWidth(0.56f)
-                    .fillMaxHeight(0.85f)
-                    .clip(RoundedCornerShape(20.dp))
-                    .shadow(elevation = 10.dp),
-                imageOptions = ImageOptions(
-                    contentScale = ContentScale.FillBounds
-                )
+                    .fillMaxWidth(0.9f)
+                    .padding(top = 20.dp),
+                horizontalArrangement = Arrangement.SpaceAround
+            ) {
+                Column {
+                    Image(
+                        painter = painterResource(id = R.drawable.height_logo),
+                        contentDescription = "Weight Logo",
+                        modifier = Modifier.size(30.dp)
+                    )
+                    Text(
+                        text = "Height : ${superhero.height}",
+                        color = Color.White,
+                        fontSize = 18.sp,
+                    )
+                }
+
+                Column {
+                    Image(
+                        painter = painterResource(id = R.drawable.weight_logo),
+                        contentDescription = "Weight Logo",
+                        modifier = Modifier.size(30.dp)
+                    )
+                    Text(
+                        text = "Weight : ${superhero.weight}",
+                        color = Color.White,
+                        fontSize = 18.sp,
+                    )
+                }
+            }
+
+            SuperheroStatsIndicator(
+                superhero.strength.toFloat(),
+                Color(0xFFF44336),
+                "Strength"
+            )
+            SuperheroStatsIndicator(
+                superhero.power.toFloat(),
+                Color(0xFF9C27B0),
+                "Power"
+            )
+            SuperheroStatsIndicator(
+                superhero.speed.toFloat(),
+                Color(0xFFFFEB3B),
+                "Speed"
+            )
+            SuperheroStatsIndicator(
+                superhero.intelligence.toFloat(),
+                Color(0xFF03A9F4),
+                "Intelligence"
+            )
+            SuperheroStatsIndicator(
+                superhero.combat.toFloat(),
+                Color(0xFF388E3C),
+                "Combat"
             )
         }
-
-        Text(
-            text = superhero.name,
-            textAlign = TextAlign.Center,
-            color = Color.White,
-            fontSize = 22.sp,
-            fontWeight = FontWeight.Bold,
-        )
-
-        Text(
-            modifier = Modifier.padding(top = 10.dp),
-            text = "BIO",
-            textAlign = TextAlign.Center,
-            color = Color.White,
-            fontSize = 20.sp,
-            fontWeight = FontWeight.Bold,
-        )
-
-        Text(
-            modifier = Modifier.padding(horizontal = 10.dp),
-            text = superhero.bio,
-            textAlign = TextAlign.Center,
-            color = Color.White,
-            fontSize = 16.sp,
-            fontWeight = FontWeight.SemiBold,
-        )
-
-        Row(
-            modifier = Modifier
-                .fillMaxWidth(0.9f)
-                .padding(top = 20.dp),
-            horizontalArrangement = Arrangement.SpaceAround
-        ) {
-            Column {
-                Image(
-                    painter = painterResource(id = R.drawable.height_logo),
-                    contentDescription = "Weight Logo",
-                    modifier = Modifier.size(30.dp)
-                )
-                Text(
-                    text = "Height : ${superhero.height}",
-                    color = Color.White,
-                    fontSize = 18.sp,
-                )
-            }
-
-            Column {
-                Image(
-                    painter = painterResource(id = R.drawable.weight_logo),
-                    contentDescription = "Weight Logo",
-                    modifier = Modifier.size(30.dp)
-                )
-                Text(
-                    text = "Weight : ${superhero.weight}",
-                    color = Color.White,
-                    fontSize = 18.sp,
-                )
-            }
-        }
-
-        SuperheroStatsIndicator(
-            superhero.strength.toFloat(),
-            Color(0xFFF44336),
-            "Strength"
-        )
-        SuperheroStatsIndicator(
-            superhero.power.toFloat(),
-            Color(0xFF9C27B0),
-            "Power"
-        )
-        SuperheroStatsIndicator(
-            superhero.speed.toFloat(),
-            Color(0xFFFFEB3B),
-            "Speed"
-        )
-        SuperheroStatsIndicator(
-            superhero.intelligence.toFloat(),
-            Color(0xFF03A9F4),
-            "Intelligence"
-        )
-        SuperheroStatsIndicator(
-            superhero.combat.toFloat(),
-            Color(0xFF388E3C),
-            "Combat"
-        )
     }
 }
 

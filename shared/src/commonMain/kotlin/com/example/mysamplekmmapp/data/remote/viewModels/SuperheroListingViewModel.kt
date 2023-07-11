@@ -33,11 +33,10 @@ open class SuperheroListingViewModel(
 
 
     init {
-        //getAllHeroesNew()
         getAllHeroes()
     }
 
-    fun setSelectedSuperhero(superhero:SuperheroListResponseItem?)
+    fun setSelectedSuperhero(superhero:SuperheroDetailsDataHolder?)
     {
         _uiStates.update { it.copy(selectedSuperhero = superhero) }
     }
@@ -65,6 +64,6 @@ data class SuperheroListingUIStates(
     val loading: Boolean = false,
     val list: List<SuperheroListResponseItem?> = arrayListOf(),
     val newList: List<SuperheroDetailsDataHolder?> = arrayListOf(),
-    val selectedSuperhero :SuperheroListResponseItem? = null,
+    val selectedSuperhero :SuperheroDetailsDataHolder? = null,
     val error: String = ""
 )

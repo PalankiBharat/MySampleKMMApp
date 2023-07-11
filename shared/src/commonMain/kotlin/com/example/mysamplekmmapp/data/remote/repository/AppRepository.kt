@@ -18,8 +18,12 @@ import kotlinx.coroutines.flow.toList
 
 class AppRepository(val api: SuperheroApi, val realm:Realm) {
     suspend fun getSuperheroList() {
+        realm.write {
+            deleteAll()
+        }
         api.getSuperHeroList().forEach {
             if (it != null) {
+                Napier.d(message = it.toSuperheroLocal().powerstats?.combat.toString(), tag = "add heroes")
                 addDataToLocalDB(it.toSuperheroLocal())
             }else{
                 Napier.d(message ="Not Added", tag = "getAllHeroes notAdded")
@@ -28,7 +32,8 @@ class AppRepository(val api: SuperheroApi, val realm:Realm) {
     }
 
     fun getSuperheroesFromLocal(): Flow<List<SuperheroDetailsDataHolder>> {
-        return realm.query<SuperHero>().asFlow().map { it.list.toList().map { item -> item.toSuperheroDataHolder() } }
+        return realm.query<SuperHero>().asFlow().map { it.list.toList().also {
+        }.map { item -> item.toSuperheroDataHolder() }}
     }
 
     private suspend fun addDataToLocalDB(superhero:SuperHero){

@@ -34,6 +34,7 @@ class SuperHero : RealmObject {
     var id: Int? = null
     var biography: Biography? = null
     var connections: Connections? = null
+
 }
 class Connections : RealmObject {
     var groupAffiliation: String? = null
