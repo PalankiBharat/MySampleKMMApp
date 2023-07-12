@@ -18,17 +18,23 @@ import kotlinx.coroutines.flow.toList
 
 class AppRepository(val api: SuperheroApi, val realm:Realm) {
     suspend fun getSuperheroList() {
-        realm.write {
-            deleteAll()
-        }
-        api.getSuperHeroList().forEach {
-            if (it != null) {
-                Napier.d(message = it.toSuperheroLocal().powerstats?.combat.toString(), tag = "add heroes")
-                addDataToLocalDB(it.toSuperheroLocal())
-            }else{
-                Napier.d(message ="Not Added", tag = "getAllHeroes notAdded")
+
+        val superheroList = api.getSuperHeroList()
+        if (superheroList.isNotEmpty())
+        {
+            realm.write {
+                deleteAll()
+            }
+            api.getSuperHeroList().forEach {
+                if (it != null) {
+                    Napier.d(message = it.toSuperheroLocal().powerstats?.combat.toString(), tag = "add heroes")
+                    addDataToLocalDB(it.toSuperheroLocal())
+                }else{
+                    Napier.d(message ="Not Added", tag = "getAllHeroes notAdded")
+                }
             }
         }
+
     }
 
     fun getSuperheroesFromLocal(): Flow<List<SuperheroDetailsDataHolder>> {
