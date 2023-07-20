@@ -1,6 +1,7 @@
 package com.example.mysamplekmmapp.data.model
 
 data class SuperheroDetailsDataHolder(
+    val id: Int,
     val name: String,
     val bio: String,
     val imageUrl: String,

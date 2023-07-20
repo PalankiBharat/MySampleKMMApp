@@ -36,9 +36,9 @@ open class SuperheroListingViewModel(
         getAllHeroes()
     }
 
-    fun setSelectedSuperhero(superhero:SuperheroDetailsDataHolder?)
+    fun getSuperheroById(id:Int):SuperheroDetailsDataHolder
     {
-        _uiStates.update { it.copy(selectedSuperhero = superhero) }
+        return repository.getSuperheroById(id).toSuperheroDataHolder()
     }
 
     private fun getAllHeroes()

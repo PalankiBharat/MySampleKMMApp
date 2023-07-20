@@ -42,6 +42,11 @@ class AppRepository(val api: SuperheroApi, val realm:Realm) {
         }.map { item -> item.toSuperheroDataHolder() }}
     }
 
+    fun getSuperheroById(id:Int):SuperHero?
+    {
+        return realm.query<SuperHero>("id == $id").first().find()
+    }
+
     private suspend fun addDataToLocalDB(superhero:SuperHero){
         try {
             realm.write { copyToRealm(superhero) }

@@ -2,7 +2,7 @@ plugins {
     kotlin("multiplatform")
     kotlin("native.cocoapods")
     id("com.android.library")
-    id("com.google.devtools.ksp") version "1.8.22-1.0.11"
+    id("com.google.devtools.ksp") version "1.9.0-1.0.11"
     id("kotlinx-serialization")
     id("com.rickclephas.kmp.nativecoroutines") version "1.0.0-ALPHA-9"
     id("io.realm.kotlin") version "1.9.1"
@@ -11,7 +11,7 @@ plugins {
 
 }
 
-val ktorVersion = "2.3.0"
+val ktorVersion = "2.3.2"
 val sqlDelightVersion = "2.0.0-rc01"
 val dateTimeVersion = "0.4.0"
 
@@ -47,7 +47,7 @@ kotlin {
     sourceSets {
         val commonMain by getting{
             dependencies {
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.2")
                 implementation("io.insert-koin:koin-core:3.3.3"){
                     because("DI for KMM")
                 }
@@ -84,7 +84,7 @@ kotlin {
 
         val androidMain by getting{
             dependencies {
-                implementation("io.insert-koin:koin-androidx-compose:3.4.2")
+                implementation("io.insert-koin:koin-androidx-compose:3.4.5")
                 implementation("io.ktor:ktor-client-okhttp:$ktorVersion")
                 implementation("app.cash.sqldelight:android-driver:$sqlDelightVersion")
 

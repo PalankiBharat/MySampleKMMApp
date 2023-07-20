@@ -8,6 +8,7 @@ fun SuperheroListResponseItem?.toSuperheroDataHolder(): SuperheroDetailsDataHold
     val alisases =
         if (this?.biography?.aliases?.isEmpty() != true) "also known as " + this?.biography?.aliases?.joinToString() else ""
     return SuperheroDetailsDataHolder(
+        id = this?.id ?:-1,
         name = this?.name ?: "No Name Found",
         bio = "${this?.name}${this?.biography?.fullName?.let { " aka $it" } ?: ""} $alisases was born at ${this?.biography?.placeOfBirth ?: "New Jersy"}",
         imageUrl = this?.images?.lg
@@ -27,6 +28,7 @@ fun SuperHero?.toSuperheroDataHolder(): SuperheroDetailsDataHolder {
     val alisases =
         if (this?.biography?.aliases?.isEmpty() != true) "also known as " + this?.biography?.aliases?.joinToString() else ""
     return SuperheroDetailsDataHolder(
+        id = this?.id ?:-1,
         name = this?.name ?: "No Name Found",
         bio = "${this?.name}${this?.biography?.fullName?.let { " aka $it" } ?: ""} $alisases was born at ${this?.biography?.placeOfBirth ?: "New Jersy"}",
         imageUrl = this?.image
