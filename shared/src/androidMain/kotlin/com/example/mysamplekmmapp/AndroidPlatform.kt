@@ -3,6 +3,9 @@ package com.example.mysamplekmmapp
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
+import app.cash.sqldelight.db.SqlDriver
+import app.cash.sqldelight.driver.android.AndroidSqliteDriver
+import com.example.SuperheroDb
 import com.example.mysamplekmmapp.data.remote.viewModels.SuperheroListingViewModel
 import io.github.aakira.napier.DebugAntilog
 import io.github.aakira.napier.Napier
@@ -63,3 +66,10 @@ fun Context.checkForInternetConnection(): Boolean {
         else -> false
     }
 }
+
+actual class DriverFactory(private val context: Context) {
+    actual fun createDriver(): SqlDriver {
+        return AndroidSqliteDriver(SuperheroDb.Schema, context, "SuperheroDatabase.db")
+    }
+}
+

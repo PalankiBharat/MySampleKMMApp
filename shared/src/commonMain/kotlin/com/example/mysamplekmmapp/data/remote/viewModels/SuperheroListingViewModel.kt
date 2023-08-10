@@ -67,3 +67,7 @@ data class SuperheroListingUIStates(
     val selectedSuperhero :SuperheroDetailsDataHolder? = null,
     val error: String = ""
 )
+
+sealed class SuperheroListingEvents {
+    data object GetSuperheroFromId : SuperheroListingEvents()
+}

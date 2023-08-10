@@ -26,36 +26,40 @@ fun BottomNavigationBar(
 ) {
     val currentRoute = currentRoute(navController)
 
-    BottomNavigation(
-        modifier = Modifier.padding(10.dp).clip(
-            RoundedCornerShape(20.dp)
-        ).alpha(0.85f),
-        backgroundColor = Color.Black
-    ) {
-        Card (
-            backgroundColor = Color.Transparent
-        ){
-            Row {
-                NavigationRoutes.listOfBottomNavigationScreens.forEach { screen->
-                    BottomNavigationItem(
-                        icon = {
-                            Icon(imageVector =  screen.icon, contentDescription = screen.title, tint = if (currentRoute == screen.route) Color.Red else Color.Black)
-                        },
-                        label = { Text(screen.title) },
-                        selected = currentRoute == screen.route,
-                        alwaysShowLabel = false,
-                        onClick = {
-                            if (currentRoute != screen.route) {
-                                navController.navigate(screen.route)
+    if (NavigationRoutes.listOfBottomNavigationScreens.any{it.route == currentRoute})
+    {
+        BottomNavigation(
+            modifier = Modifier.padding(10.dp).clip(
+                RoundedCornerShape(20.dp)
+            ).alpha(0.85f),
+            backgroundColor = Color.Black
+        ) {
+            Card (
+                backgroundColor = Color.Transparent
+            ){
+                Row {
+                    NavigationRoutes.listOfBottomNavigationScreens.forEach { screen->
+                        BottomNavigationItem(
+                            icon = {
+                                Icon(imageVector =  screen.icon, contentDescription = screen.title, tint = if (currentRoute == screen.route) Color.Red else Color.White)
+                            },
+                            label = { Text(screen.title) },
+                            selected = currentRoute == screen.route,
+                            alwaysShowLabel = false,
+                            onClick = {
+                                if (currentRoute != screen.route) {
+                                    navController.navigate(screen.route)
+                                }
                             }
-                        }
 
-                    )
+                        )
+                    }
                 }
             }
-        }
 
+        }
     }
+
 }
 
 @Composable

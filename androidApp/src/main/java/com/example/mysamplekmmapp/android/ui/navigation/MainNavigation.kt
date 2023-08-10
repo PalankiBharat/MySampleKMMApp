@@ -46,7 +46,7 @@ fun MainNavigation() {
                 ) {
                     val id = it.arguments?.getInt("superhero_id")
                     SuperheroDetailsScreen(
-                        navController = navController, id = id
+                        id = id
                     )
                 }
 

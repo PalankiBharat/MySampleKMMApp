@@ -1,5 +1,8 @@
 package com.example.mysamplekmmapp
 
+import app.cash.sqldelight.db.SqlDriver
+import app.cash.sqldelight.driver.native.NativeSqliteDriver
+import com.example.SuperheroDb
 import com.example.mysamplekmmapp.data.remote.viewModels.SuperheroListingViewModel
 import io.github.aakira.napier.DebugAntilog
 import io.github.aakira.napier.Napier
@@ -43,6 +46,14 @@ actual fun platformModule() = module{
         SuperheroListingViewModel(get())
     }
 }
+
+
+actual class DriverFactory {
+    actual fun createDriver(): SqlDriver {
+        return NativeSqliteDriver(SuperheroDb.Schema, "SuperheroDatabase.db")
+    }
+}
+
 
 object KoinHelper{
     val koinHelper = KoinHelperIOS()

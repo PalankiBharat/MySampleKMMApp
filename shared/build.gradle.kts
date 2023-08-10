@@ -12,9 +12,8 @@ plugins {
 }
 
 val ktorVersion = "2.3.2"
-val sqlDelightVersion = "2.0.0-rc01"
+val sqlDelightVersion = "2.0.0-alpha05"
 val dateTimeVersion = "0.4.0"
-
 
 kotlin.sourceSets.all {
     languageSettings.optIn("kotlin.experimental.ExperimentalObjCName")
@@ -47,7 +46,7 @@ kotlin {
     sourceSets {
         val commonMain by getting{
             dependencies {
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.2")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
                 implementation("io.insert-koin:koin-core:3.3.3"){
                     because("DI for KMM")
                 }
@@ -123,9 +122,13 @@ android {
     defaultConfig {
         minSdk = 25
     }
-
-/*    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }*/
 }
+
+sqldelight {
+    databases {
+        create("SuperheroDb") {
+            packageName.set("com.example")
+        }
+    }
+}
+

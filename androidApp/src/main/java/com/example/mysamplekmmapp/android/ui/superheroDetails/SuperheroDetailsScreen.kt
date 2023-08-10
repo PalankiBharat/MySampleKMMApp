@@ -38,7 +38,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 import com.example.mysamplekmmapp.android.R
 import com.example.mysamplekmmapp.android.utils.Colors.appPrimaryColor
 import com.example.mysamplekmmapp.data.remote.viewModels.SuperheroListingViewModel
@@ -53,8 +52,7 @@ import org.koin.androidx.compose.koinViewModel
 fun SuperheroDetailsScreen(
     modifier: Modifier = Modifier,
     vm: SuperheroListingViewModel = koinViewModel(),
-    navController: NavController,
-    id:Int?
+    id: Int?
 ) {
     val superhero = vm.getSuperheroById(id?:0)
     val scrollState = rememberScrollState()
